@@ -11,7 +11,7 @@ const RegisterSchema = Yup.object().shape({
   height: Yup.string()
 });
 
-const SmurfForm = ({ addSmurf }) => {
+const SmurfForm = ({ addSmurf, editSmurf, updatingSmurf }) => {
   return (
     <div>
       <Formik
@@ -23,8 +23,8 @@ const SmurfForm = ({ addSmurf }) => {
         /* validationSchema={RegisterSchema} */
         onSubmit={(values, actions) => {
           actions.setSubmitting(true);
-
-          addSmurf(values);
+          updatingSmurf ? editSmurf(values) : addSmurf(values);
+          actions.resetForm();
         }}
         render={({
           touched,
@@ -97,7 +97,7 @@ const SmurfForm = ({ addSmurf }) => {
               ) : null}
 
               <Button type="submit" color="blue">
-                Submit &rarr;
+                Submit&rarr;
               </Button>
               {/* {isSubmitting && "Loading!"} */}
             </Form>
