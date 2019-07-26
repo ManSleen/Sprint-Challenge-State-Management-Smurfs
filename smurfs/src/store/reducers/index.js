@@ -24,7 +24,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         fetchingSmurfs: false,
         error: "",
-        smurfs: [...state.smurfs, action.payload]
+        smurfs: action.payload
       };
     default:
       return state;
