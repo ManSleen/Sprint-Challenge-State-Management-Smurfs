@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchSmurfs, addSmurf } from "../store/actions";
+import { fetchSmurfs, addSmurf, deleteSmurf } from "../store/actions";
 
 import SmurfsList from "./SmurfsList";
 import SmurfForm from "./SmurfForm";
 
 import "./App.css";
 
-const App = ({ smurfs, fetchSmurfs, addSmurf }) => {
+const App = ({ smurfs, fetchSmurfs, addSmurf, deleteSmurf }) => {
   useEffect(() => {
     fetchSmurfs();
   }, []);
@@ -17,7 +17,7 @@ const App = ({ smurfs, fetchSmurfs, addSmurf }) => {
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
 
-        <SmurfsList smurfs={smurfs} />
+        <SmurfsList deleteSmurf={deleteSmurf} smurfs={smurfs} />
         <SmurfForm addSmurf={addSmurf} />
       </div>
     );
@@ -41,5 +41,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchSmurfs, addSmurf }
+  { fetchSmurfs, addSmurf, deleteSmurf }
 )(App);
