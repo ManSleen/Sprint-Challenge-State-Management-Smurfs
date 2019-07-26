@@ -1,4 +1,9 @@
-import { FETCH_SMURFS_START, FETCH_SMURFS_SUCCESS } from "../actions";
+import {
+  FETCH_SMURFS_START,
+  FETCH_SMURFS_SUCCESS,
+  ADD_SMURF_START,
+  ADD_SMURF_SUCCESS
+} from "../actions";
 
 const initialState = {
   smurfs: [],
@@ -16,6 +21,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingSmurfs: true,
+        isLoading: true,
         error: "",
         smurfs: []
       };
@@ -23,6 +29,27 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingSmurfs: false,
+        error: "",
+        smurfs: action.payload
+      };
+    case ADD_SMURF_START:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        isLoading: true,
+        addingSmurf: true,
+        updatingSmurf: false,
+        deletingSmurf: false,
+        error: ""
+      };
+    case ADD_SMURF_SUCCESS:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        isLoading: false,
+        addingSmurf: false,
+        updatingSmurf: false,
+        deletingSmurf: false,
         error: "",
         smurfs: action.payload
       };

@@ -1,15 +1,8 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-
-import { fetchSmurfs } from "../store/actions";
 
 import Smurf from "./Smurf";
 
-const SmurfsList = ({ smurfs, fetchSmurfs }) => {
-  useEffect(() => {
-    fetchSmurfs();
-  }, []);
-
+const SmurfsList = ({ smurfs }) => {
   console.log(smurfs);
   if (smurfs) {
     return (
@@ -29,20 +22,4 @@ const SmurfsList = ({ smurfs, fetchSmurfs }) => {
   }
 };
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    smurfs: state.smurfs,
-    fetchingSmurfs: state.fetchingSmurfs,
-    isLoading: state.isLoading,
-    addingSmurf: state.addingSmurf,
-    updatingSmurf: state.updatingSmurf,
-    deletingSmurf: state.deletingSmurf,
-    error: state.error
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { fetchSmurfs }
-)(SmurfsList);
+export default SmurfsList;
